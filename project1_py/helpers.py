@@ -155,6 +155,28 @@ class Simple3(OptimizationProblem):
             10*(-4*(w-z)**3 - y + z)
                 ])
 
+class Test(OptimizationProblem):
+    '''
+    Rosenbrock's Function
+    '''
+    
+    def __init__(self):
+        self._xdim = 2
+        self._prob = 'test'
+        self._n = 20
+        self._reset()
+
+    def x0(self):
+        return np.array([1., 1.])
+
+    def _wrapped_f(self, x):
+        return 0.5*(x[0]**2 + x[1]**2)
+
+    def _wrapped_g(self, x):
+        return np.array([
+            x[0],
+            x[1]
+                ])
 
 def optimize_random(f, g, x0, n, count, prob):
     """ Optimizer using random search.
